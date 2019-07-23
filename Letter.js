@@ -3,19 +3,19 @@ var Letter = function(character, guess) {
     this.guess = guess;
     this.returnGuessed = function() {
         if (this.guess) {
-            console.log(this.character);
+            // console.log(this.character);
             return this.character
         } else {
-            console.log("____");
+            // console.log("____");
             return "_";
         }
     };
     this.charCheck = function(character) {
         if (character === this.character) {
-            console.log("true? " + guess);
+            // console.log("true? " + guess);
             return guess = true;
         } else {
-            console.log(guess);
+            // console.log(guess);
             return guess = false;
 
         }

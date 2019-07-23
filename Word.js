@@ -7,44 +7,106 @@ var displayArray = [];
     
     var wordArray = [];
     var hangArray = [];
-    var array = function(letter) {
-        for (var i = 0; i < letter.length; i += 1) {
-            wordArray.push(letter.charAt(i));
-        }
-    };
 
-    array("more");
+    var letterSelect;
 
-    var createLetters = function(input) {
-        for (let i = 0; i < input.length; i++) {
-            // console.log(input[i]);
-            hangArray.push(new Letter(input[i], false));
+    var selection = "";
 
-        }
 
-    }
+    var list = ["dinosaur", "truck", "office", "javascript"];
 
-    createLetters(wordArray);
+    // var reset = function() {
+    //     wordArray = [];
+    //     hangArray = [];
+    //     displayArray = [];
+    //     selection = "";
+    // };
 
-    hangArray[1].guess = true;
+
+
     var createDisplay = function(input) {
         displayArray = [];
         for (let i = 0; i < input.length; i++) {
-            if (input[i].guess) {
+            // if (input[i].guess) {
                 // console.log(input[i].character);
                 // return input[i].character;
-                displayArray.push(input[i].character);
-            } 
-            else {
-                // console.log("TESTING_");
-                displayArray.push("_");
-                // return "_";
-            };
+                displayArray.push(input[i].returnGuessed());
+            // } 
+            // else {
+            //     // console.log("TESTING_");
+            //     displayArray.push("_");
+            //     // return "_";
+            // };
         }
-        // console.log(displayArray.join(" "));
+        console.log("testing3: " + displayArray);
     };
 
-    createDisplay(hangArray);
+
+
+
+
+    var createLetters = function(input) {
+        hangArray = [];
+        for (let i = 0; i < input.length; i++) {
+            // console.log(input[i]);
+            letterSelect = new Letter(input[i], false);
+            hangArray.push(letterSelect);
+        }
+        // createDisplay(hangArray);
+        console.log("testing2: " + hangArray);
+        console.log("testing2 cont: " + hangArray[1].guess);
+    };
+
+
+
+
+
+
+
+    var array = function(letter) {
+        wordArray = [];
+        for (let i = 0; i < letter.length; i += 1) {
+            wordArray.push(letter.charAt(i));
+        }
+        // createLetters(wordArray);
+
+    console.log("testing testing testing" + wordArray);
+
+    };
+
+
+
+    var random = function() {
+        // reset();
+        wordArray = [];
+        hangArray = [];
+        displayArray = [];
+        selection = "";
+
+        selection = list[Math.floor(Math.random() * list.length)];
+        console.log(selection);  
+        // array(selection);      
+    };
+
+
+    var startAgain = function() {
+        wordArray = [];
+        hangArray = [];
+        displayArray = [];
+        selection = "";
+        letterSelect = "";
+        random();
+        array(selection);
+        createLetters(wordArray);
+        createDisplay(hangArray);
+    };
+
+    startAgain();
+
+
+
+
+
 
 
 
@@ -72,6 +134,13 @@ var displayArray = [];
 module.exports = {
     hangArray: hangArray, 
     displayArray: displayArray,
+    wordArray: wordArray,
+    random: random,
+    array: array,
+    createLetters: createLetters,
     createDisplay: createDisplay,
-
+    selection: selection,
+    // reset: reset,
+    letterSelect: letterSelect,
+    startAgain: startAgain
 };
