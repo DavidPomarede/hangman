@@ -1,5 +1,5 @@
 var Letter = require('./Letter');
-
+var displayArray = [];
 // var Word = function(selection) {
     // this.selection = selection;
     // this.wordArray = [];
@@ -16,26 +16,33 @@ var Letter = require('./Letter');
     array("more");
 
     var createLetters = function(input) {
-        for (var i = 0; i < input.length; i++) {
-            console.log(input[i]);
+        for (let i = 0; i < input.length; i++) {
+            // console.log(input[i]);
             hangArray.push(new Letter(input[i], false));
+
         }
+
     }
 
     createLetters(wordArray);
 
     hangArray[1].guess = true;
     var createDisplay = function(input) {
-        for (var i = 0; i < input.length; i++) {
+        displayArray = [];
+        for (let i = 0; i < input.length; i++) {
             if (input[i].guess) {
-                console.log(input[i].character);
+                // console.log(input[i].character);
                 // return input[i].character;
-            } else {
-                console.log("TESTING_");
+                displayArray.push(input[i].character);
+            } 
+            else {
+                // console.log("TESTING_");
+                displayArray.push("_");
                 // return "_";
             };
         }
-    }
+        // console.log(displayArray.join(" "));
+    };
 
     createDisplay(hangArray);
 
@@ -60,3 +67,11 @@ var Letter = require('./Letter');
     //     }
     // }
 // }
+
+
+module.exports = {
+    hangArray: hangArray, 
+    displayArray: displayArray,
+    createDisplay: createDisplay,
+
+};
