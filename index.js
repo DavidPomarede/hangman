@@ -1,6 +1,6 @@
 var inquirer = require('inquirer');
 var Word = require('./Word');
-var Letter = require('./Letter');
+// var Letter = require('./Letter');
 
 
 // var list = ["dinosaur", "truck", "office", "javascript"];
@@ -23,6 +23,7 @@ var remaining;
 var totalGuess = 10;
 
 
+
 // var startOver = function() {
 //     for (var j = 0; j<Word.hangArray.length; j++) {
 //         if (Word.hangArray[j].guess == false) {
@@ -34,6 +35,8 @@ var totalGuess = 10;
 
 var startGame = function() {
     // totalGuess = 10;
+
+    Word.startAgain();
     remaining = Word.hangArray.length;
     console.log("Welcome. Your word to guess: \n");
     console.log(Word.displayArray.join(' '));
@@ -48,7 +51,7 @@ var startGame = function() {
 
 
 
-    Word.startAgain();
+
     main();
 
 }
@@ -58,6 +61,10 @@ var keepPlaying = function() {
 }
 
 var playAgainFunc = function () {
+    Word.displayArray = [];
+    Word.wordArray = [];
+    Word.array = [];
+
     inquirer
     .prompt([
     {
@@ -83,6 +90,11 @@ var playAgainFunc = function () {
             // Word.createDisplay(Word.hangArray);
             // console.log("3: " + Word.createDisplay(Word.hangArray));
             // console.log("display array: " + Word.displayArray);
+            Word.array = [];
+            for (var i = 0; i<Word.hangArray.length;i++) {
+                Word.hangArray[i].guess = false;
+            };
+            Word.displayArray = [];
             Word.startAgain();
             startGame();
             
@@ -123,15 +135,17 @@ var main = function() {
                 }
             }
             // console.log("TEST_TEST");
-            console.log(Word.displayArray.join(' '));
+            console.log("test6: " + Word.displayArray.join(' '));
             keepPlaying();
         });
     } else if (totalGuess == 0) {
         console.log("You ran out of Guesses!");
+
         totalGuess = 10;
         playAgainFunc(); 
     } else {
         console.log("CONGRATULATIONS! YOU GUESSED ALL THE LETTERS!");
+
         totalGuess = 10;
         playAgainFunc();
     }

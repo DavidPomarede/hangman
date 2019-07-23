@@ -13,6 +13,7 @@ var displayArray = [];
     var selection = "";
 
 
+
     var list = ["dinosaur", "truck", "office", "javascript"];
 
     // var reset = function() {
@@ -26,6 +27,9 @@ var displayArray = [];
 
     var createDisplay = function(input) {
         displayArray = [];
+        for (var i = 0; i<input.length; i++) {
+            input[i].guess = false;
+        };
         for (let i = 0; i < input.length; i++) {
             // if (input[i].guess) {
                 // console.log(input[i].character);
@@ -38,7 +42,8 @@ var displayArray = [];
             //     // return "_";
             // };
         }
-        console.log("testing3: " + displayArray);
+        // console.log("testing3: " + displayArray);
+        return displayArray;
     };
 
 
@@ -53,8 +58,9 @@ var displayArray = [];
             hangArray.push(letterSelect);
         }
         // createDisplay(hangArray);
-        console.log("testing2: " + hangArray);
-        console.log("testing2 cont: " + hangArray[1].guess);
+        // console.log("testing2: " + hangArray);
+        // console.log("testing2 cont: " + hangArray[1].guess);
+        return hangArray;
     };
 
 
@@ -70,7 +76,8 @@ var displayArray = [];
         }
         // createLetters(wordArray);
 
-    console.log("testing testing testing" + wordArray);
+    // console.log("testing testing testing" + wordArray);
+    return wordArray;
 
     };
 
@@ -84,24 +91,30 @@ var displayArray = [];
         selection = "";
 
         selection = list[Math.floor(Math.random() * list.length)];
-        console.log(selection);  
+        // console.log(selection);  
         // array(selection);      
+        return selection;
     };
 
 
     var startAgain = function() {
         wordArray = [];
-        hangArray = [];
+        for (var i = 0; i<hangArray.length;i++) {
+            hangArray[i].guess = false;
+        };
         displayArray = [];
         selection = "";
-        letterSelect = "";
+        letterSelect = {};
         random();
         array(selection);
         createLetters(wordArray);
         createDisplay(hangArray);
     };
 
-    startAgain();
+
+        startAgain();
+
+
 
 
 
@@ -142,5 +155,6 @@ module.exports = {
     selection: selection,
     // reset: reset,
     letterSelect: letterSelect,
-    startAgain: startAgain
+    startAgain: startAgain,
+
 };
