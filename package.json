@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/DavidPomarede/hangman#readme",
   "dependencies": {
+    "chalk": "^2.4.2",
     "inquirer": "^6.5.0"
   }
 }
