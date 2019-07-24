@@ -6,5 +6,5 @@ Before you run this in node, you will have to run
 
 > npm install
 
-to make sure that you have "inquirer" which is a required package to run the hangman game.
+to make sure that you have "inquirer" and "chalk" which are required packages to run this modest hangman game.
 
