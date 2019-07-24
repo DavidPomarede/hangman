@@ -23,6 +23,21 @@ var remaining;
 var totalGuess = 10;
 
 
+var displayArray = [];
+
+
+// var wordArray = [];
+// var hangArray = [];
+
+// var letterSelect;
+
+// var selection = "";
+
+var throughputIn = Word.throughput;
+
+var list = ["dinosaur", "truck", "office", "javascript"];
+
+
 
 // var startOver = function() {
 //     for (var j = 0; j<Word.hangArray.length; j++) {
@@ -32,17 +47,28 @@ var totalGuess = 10;
 //         };
 //     }
 // }
+var selection = "";
+
+var newWord = [];
 
 var startGame = function() {
     // totalGuess = 10;
 
-    Word.startAgain();
-    remaining = Word.hangArray.length;
-    console.log("Welcome. Your word to guess: \n");
-    console.log(Word.displayArray.join(' '));
-    for (var i=0;i<Word.hangArray.length;i++) {
-            Word.hangArray[i].guess = false;
-    }
+    displayArray = [];
+    newWord = [];
+    selection = list[Math.floor(Math.random() * list.length)];
+    newWord = new Word.Randomword;
+    console.log("receiving3: " + newWord.returnArray(selection));
+    console.log("receiving5: " + newWord.newWordArray);
+    console.log("receiving: " + Word.hangArray);
+    console.log("recieving2: " + throughputIn);
+    remaining = newWord.newWordArray.length;
+    // remaining = Word.hangArray.length;
+    // console.log("Welcome. Your word to guess: \n");
+    // console.log(Word.displayArray.join(' '));
+    // for (var i=0;i<Word.hangArray.length;i++) {
+    //         Word.hangArray[i].guess = false;
+    // }
             // Word.wordArray = [];
             // Word.displayArray = [];
             // Word.hangArray = [];
@@ -61,10 +87,11 @@ var keepPlaying = function() {
 }
 
 var playAgainFunc = function () {
-    Word.displayArray = [];
-    Word.wordArray = [];
-    Word.array = [];
-
+    displayArray = [];
+    // Word.wordArray = [];
+    // Word.array = [];
+    // Word.hangArray = [];
+    // Word.wordArray = [];
     inquirer
     .prompt([
     {
@@ -90,12 +117,12 @@ var playAgainFunc = function () {
             // Word.createDisplay(Word.hangArray);
             // console.log("3: " + Word.createDisplay(Word.hangArray));
             // console.log("display array: " + Word.displayArray);
-            Word.array = [];
-            for (var i = 0; i<Word.hangArray.length;i++) {
-                Word.hangArray[i].guess = false;
-            };
-            Word.displayArray = [];
-            Word.startAgain();
+            // Word.array = [];
+            // for (var i = 0; i<Word.hangArray.length;i++) {
+            //     Word.hangArray[i].guess = false;
+            // };
+            // Word.displayArray = [];
+            // Word.startAgain();
             startGame();
             
         } else {
@@ -107,6 +134,12 @@ var playAgainFunc = function () {
 
 var main = function() {
     if ((remaining > 0) && (totalGuess > 0)) {
+
+        displayArray = [];
+        for (let i = 0; i < newWord.newWordArray.length; i++) {
+            displayArray.push(newWord.newWordArray[i].returnGuessed());
+        };
+        console.log("displayArray: "  + displayArray.join(' '));
         inquirer
         .prompt([
         {
@@ -120,32 +153,36 @@ var main = function() {
             userGuess = answer.playerGuess;
             // console.log("***************USER GUESS")
             // console.log(userGuess);
-            for (var i=0;i<Word.hangArray.length;i++) {
-                if (Word.hangArray[i].charCheck(userGuess)) {
-                    Word.hangArray[i].guess = true;
+
+            displayArray = [];
+            for (var i=0;i<newWord.newWordArray.length;i++) {
+                if (newWord.newWordArray[i].charCheck(userGuess)) {
+                    newWord.newWordArray[i].guess = true;
                     remaining--;
                     // console.log("TEST HANGARRAY: " + Word.hangArray[i].guess);
 
                     // console.log("TEST HANGARRAY: " + Word.hangArray[i].character);
                     // console.log("test remaining: " + remaining);
                     // Word.createDisplay(Word.hangArray);
-                    Word.displayArray[i] = Word.hangArray[i].character;
+                    displayArray[i] = newWord.newWordArray[i].character;
                     // console.log(" ----------");
                     // console.log(Word.hangArray);
                 }
             }
             // console.log("TEST_TEST");
-            console.log("test6: " + Word.displayArray.join(' '));
+            console.log("TEST7: " + displayArray);
+            console.log("test6: " + displayArray.join(''));
             keepPlaying();
         });
     } else if (totalGuess == 0) {
         console.log("You ran out of Guesses!");
-
+        displayArray = [];
+        newWord.newWordArray = [];
         totalGuess = 10;
         playAgainFunc(); 
-    } else {
+    } else if (remaining == 0) {
         console.log("CONGRATULATIONS! YOU GUESSED ALL THE LETTERS!");
-
+        newWord.newWordArray = [];
         totalGuess = 10;
         playAgainFunc();
     }
