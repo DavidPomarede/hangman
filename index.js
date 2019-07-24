@@ -20,7 +20,7 @@ var Word = require('./Word');
 
 var userGuess = "";
 var remaining;
-var totalGuess = 10;
+var totalGuess = 15;
 
 
 var displayArray = [];
@@ -35,7 +35,7 @@ var displayArray = [];
 
 var throughputIn = Word.throughput;
 
-var list = ["dinosaur", "truck", "office", "javascript"];
+var list = ["mysql", "programming", "node", "javascript", "react", "jquery", "hypertext", "refactoring", "mongodb", "variable", "function", "constructor", "module"];
 
 
 
@@ -58,10 +58,8 @@ var startGame = function() {
     newWord = [];
     selection = list[Math.floor(Math.random() * list.length)];
     newWord = new Word.Randomword;
-    console.log("receiving3: " + newWord.returnArray(selection));
-    console.log("receiving5: " + newWord.newWordArray);
-    console.log("receiving: " + Word.hangArray);
-    console.log("recieving2: " + throughputIn);
+    newWord.returnArray(selection);
+
     remaining = newWord.newWordArray.length;
     // remaining = Word.hangArray.length;
     // console.log("Welcome. Your word to guess: \n");
@@ -158,6 +156,7 @@ var main = function() {
             for (var i=0;i<newWord.newWordArray.length;i++) {
                 if (newWord.newWordArray[i].charCheck(userGuess)) {
                     newWord.newWordArray[i].guess = true;
+                    console.log("CORRECT!!");
                     remaining--;
                     // console.log("TEST HANGARRAY: " + Word.hangArray[i].guess);
 
@@ -170,8 +169,8 @@ var main = function() {
                 }
             }
             // console.log("TEST_TEST");
-            console.log("TEST7: " + displayArray);
-            console.log("test6: " + displayArray.join(''));
+
+            // console.log("test6: " + displayArray.join(''));
             keepPlaying();
         });
     } else if (totalGuess == 0) {

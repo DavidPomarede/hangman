@@ -106,7 +106,7 @@ var Letter = require('./Letter');
             for (let i = 0; i < input.length; i += 1) {
                 wordArray.push(input.charAt(i));
             }
-            console.log("wordArray: " + wordArray);
+            // console.log("wordArray: " + wordArray);
             hangArray = [];
             for (let i = 0; i < wordArray.length; i++) {
                 // console.log(input[i]);
@@ -115,7 +115,7 @@ var Letter = require('./Letter');
             }
             this.newWordArray = hangArray;
 
-            console.log("testing4: " + this.newWordArray);
+            // console.log("testing4: " + this.newWordArray);
         };
 
         // selection = input[Math.floor(Math.random() * input.length)];
