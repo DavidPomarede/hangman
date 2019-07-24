@@ -15,7 +15,7 @@ console.log(chalk.yellow("    .' |  (`._   (_)     _   |    |    Welcome to.... 
 console.log(chalk.blue("  .'    |  '._)         (_)  |    |  H A N G M A N   for    |"));
 console.log(chalk.magenta("  | _.')|      .----..---.   /    |                         |"));
 console.log(chalk.cyan("  |(_.'  |    /    .-|-.  |  |    |    N    O    D    E !   |"));
-console.log(chalk.white("  |     0|    |   ( O| O) | o|     |________      __________/"));
+console.log(chalk.white("  |     0|    |   ( O| O) | o|    |_________      __________/"));
 console.log(chalk.gray("   |  _  |  .--.____.'._.-.  |              |    /"));
 console.log(chalk.redBright("   | (_) | o         -` .-`  |               |  /"));
 console.log(chalk.greenBright("    |    |   |`-._ _ _ _ _| /                 |/"));
